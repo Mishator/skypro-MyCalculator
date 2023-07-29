@@ -21,29 +21,19 @@ public class CalculatorController {
     }
         @GetMapping("/plus")
         public String sum (@RequestParam int num1,@RequestParam int num2){
-            int result = calculatorService.sum(num1, num2);
-            return buildResponse(num1, num2, result, '+');
+            return calculatorService.sum(num1, num2);
         }
         @GetMapping("/minus")
         public String subtract (@RequestParam int num1,@RequestParam int num2){
-            int result = calculatorService.subtract(num1, num2);
-            return buildResponse(num1, num2, result, '-');
+            return calculatorService.subtract(num1, num2);
         }
         @GetMapping("/multiply")
         public String multiply (@RequestParam int num1,@RequestParam int num2){
-            int result = calculatorService.multiply(num1, num2);
-            return buildResponse(num1, num2, result, '*');
+            return calculatorService.multiply(num1, num2);
         }
         @GetMapping("/divide")
         public String divide (@RequestParam int num1,@RequestParam int num2){
-        if (num2==0) {
-            throw new IllegalStateException("На ноль делить нельзя");
-        }
-            int result = calculatorService.divide(num1, num2);
-            return buildResponse(num1, num2, result, '/');
+            return calculatorService.divide(num1, num2);
         }
 
-    private String buildResponse(int num1, int num2, int result, char action) {
-        return String.format("%d %c %d = %d", num1, action, num2, result);
-    }
 }
